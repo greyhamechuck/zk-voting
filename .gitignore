@@ -1,10 +1,16 @@
-circuits/build/
-node_modules/
-artifacts/
-cache/
+# Dependencies
+/node_modules
 
-voter.json
-proof.json
-ticket.json
-result.json
-contracts/Verifier.sol
+# Environment variables
+.env
+
+# Build artifacts
+/build
+/circuits/build
+
+# Generated files
+/voter.json
+/votersList.json
+/deployed-contracts.json
+/ticket.json
+*.log

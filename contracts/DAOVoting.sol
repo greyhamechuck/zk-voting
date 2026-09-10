@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// This contract is the core of the on-chain voting system.
 pragma solidity ^0.8.28;
 
 interface IVerifier {

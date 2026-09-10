@@ -23,19 +23,22 @@ async function downloadTicket() {
 }
 
 /**
- * CLI command to cast a vote
+ * CLI command to cast a vote and then display the results.
  */
 async function castVote() {
     try {
-        const voteOption = prompt('Enter person you want to vote for (a or b): ');
+        const voteOption = prompt('Enter your vote (a for Yes, b for No): ');
         const success = await processVote(voteOption);
         
         if (success) {
-            const results = getVotingResults();
-            console.log("\nCurrent voting results:");
-            console.log(`Option A: ${results.votes.a} votes`);
-            console.log(`Option B: ${results.votes.b} votes`);
-            console.log(`Total votes: ${results.totalVotes}`);
+            console.log("\nFetching updated voting results...");
+            const results = await getVotingResults(); // Now an async call
+            if (results) {
+                console.log("\nCurrent Voting Results:");
+                console.log(`Yes (a): ${results.yesVotes} votes`);
+                console.log(`No (b): ${results.noVotes} votes`);
+                console.log(`Total votes: ${results.totalVotes}`);
+            }
         }
     } catch (error) {
         console.error("Error casting vote:", error);
@@ -44,7 +47,7 @@ async function castVote() {
 }
 
 /**
- * CLI command to start a new poll
+ * CLI command to start a new poll by registering voters.
  */
 async function startPoll() {
     console.log("Initializing new poll...");
